@@ -1,0 +1,658 @@
+{
+	"info": {
+		"_postman_id": "tourism-hotels-gateway-v1",
+		"name": "Tourism & Hotels Management - Gateway",
+		"description": "🌐 **API Gateway Collection** for Tourism & Hotels Management System\n\n**Gateway Configuration:**\n- 🚪 **Gateway Port**: 443\n- 🔀 **Service Discovery**: Enabled with lower-case service IDs\n- 📍 **URL Pattern**: `http://localhost:443/{lowercase-service-name}/{endpoint-path}`\n- 🔄 **Auto-routing**: Gateway automatically converts service names to lowercase\n\n**Important**: Due to `lower-case-service-id: true`, URLs use lowercase service names:\n- `CITIES-SERVICE` becomes `cities-service`\n- `HOTELS-SERVICE` becomes `hotels-service`\n\n**Services Integration:**\n🏙️ **Cities Service** (`cities-service`): Complete CRUD operations for managing tourist cities\n🏨 **Hotels Service** (`hotels-service`): Advanced hotel search, filtering, and information retrieval\n\n**Service Registry:**\n- 🔍 **Eureka Server**: http://localhost:8761/eureka\n- 🏙️ **Cities Service**: Direct access on port 8081\n- 🏨 **Hotels Service**: Direct access on port 8082 (includes Swagger UI)\n- 🌐 **API Gateway**: Unified access through port 443\n\n**Database Overview:**\n- 🏙️ **100 Cities**: Primarily in Japan (Tokio, Osaka, Kioto, Sapporo) and United States\n- 🏨 **137 Hotels**: Quality ratings from 3-5 stars across major tourist destinations\n- 🌏 **Coverage**: Japan (Kanto, Kansai, Hokkaido regions) and USA states\n\n**Key Benefits of Gateway:**\n- Single entry point for all services\n- Automatic service discovery\n- Load balancing and routing\n- Centralized configuration\n\n⚠️ **Important Configuration Notes**:\n- Service names are automatically converted to lowercase by the gateway\n- Correct URLs: `/cities-service/...` and `/hotels-service/...`\n- Services registered in Eureka at http://localhost:8761/eureka\n- Hotels service includes Swagger UI at http://localhost:8082/swagger-ui.html\n- Both services use MySQL databases with environment variables for credentials",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "tourism-gateway-collection"
+	},
+	"item": [
+		{
+			"name": "🏙️ Cities Management (via Gateway)",
+			"description": "Complete CRUD operations for tourist cities through API Gateway",
+			"item": [
+				{
+					"name": "📋 Get All Cities",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON array\", function () {",
+									"    pm.expect(pm.response.json()).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_base_url}}/{{tourism_service_name}}/tourism/cities",
+							"host": [
+								"{{gateway_base_url}}"
+							],
+							"path": [
+								"{{tourism_service_name}}",
+								"tourism",
+								"cities"
+							]
+						},
+						"description": "Retrieves all tourist cities through the API Gateway. The gateway routes this request to the Tourism service automatically."
+					},
+					"response": []
+				},
+				{
+					"name": "🔍 Find City by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has city data\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_base_url}}/{{tourism_service_name}}/tourism/city/id/1",
+							"host": [
+								"{{gateway_base_url}}"
+							],
+							"path": [
+								"{{tourism_service_name}}",
+								"tourism",
+								"city",
+								"id",
+								"1"
+							]
+						},
+						"description": "Finds a specific city by ID through the gateway. Example: ID=1 returns Tokio. Replace '1' with any ID from 1-100."
+					},
+					"response": []
+				},
+				{
+					"name": "🔍 Find City by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_base_url}}/{{tourism_service_name}}/tourism/city/name/Tokio",
+							"host": [
+								"{{gateway_base_url}}"
+							],
+							"path": [
+								"{{tourism_service_name}}",
+								"tourism",
+								"city",
+								"name",
+								"Tokio"
+							]
+						},
+						"description": "Searches for a city by name through the gateway. Try: Tokio, Osaka, Kioto, Sapporo, New York, Los Angeles."
+					},
+					"response": []
+				},
+				{
+					"name": "➕ Create New City",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Yokohama\",\n  \"state\": \"Kanto\",\n  \"country\": \"Japón\"\n}"
+						},
+						"url": {
+							"raw": "{{gateway_base_url}}/{{tourism_service_name}}/tourism/city/create",
+							"host": [
+								"{{gateway_base_url}}"
+							],
+							"path": [
+								"{{tourism_service_name}}",
+								"tourism",
+								"city",
+								"create"
+							]
+						},
+						"description": "Creates a new tourist city through the API Gateway. All fields (name, state, country) are required."
+					},
+					"response": []
+				},
+				{
+					"name": "✏️ Update City",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Tokio\",\n  \"state\": \"Tokyo Metropolis\"\n}"
+						},
+						"url": {
+							"raw": "{{gateway_base_url}}/{{tourism_service_name}}/tourism/city/1",
+							"host": [
+								"{{gateway_base_url}}"
+							],
+							"path": [
+								"{{tourism_service_name}}",
+								"tourism",
+								"city",
+								"1"
+							]
+						},
+						"description": "Updates an existing city through the gateway. Only provided fields will be modified. Replace '1' with target city ID."
+					},
+					"response": []
+				},
+				{
+					"name": "🗑️ Delete City",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_base_url}}/{{tourism_service_name}}/tourism/city/1",
+							"host": [
+								"{{gateway_base_url}}"
+							],
+							"path": [
+								"{{tourism_service_name}}",
+								"tourism",
+								"city",
+								"1"
+							]
+						},
+						"description": "Deletes a city through the gateway. Replace '1' with the city ID to delete. Note: Cities with hotels cannot be deleted."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🏨 Hotels Management (via Gateway)",
+			"description": "Advanced hotel search and information retrieval through API Gateway",
+			"item": [
+				{
+					"name": "🔍 Search by Details",
+					"description": "Search hotels by specific identifiers and names via gateway",
+					"item": [
+						{
+							"name": "Find Hotel by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_base_url}}/{{hotels_service_name}}/hotels/id/1",
+									"host": [
+										"{{gateway_base_url}}"
+									],
+									"path": [
+										"{{hotels_service_name}}",
+										"hotels",
+										"id",
+										"1"
+									]
+								},
+								"description": "Retrieves hotel details by ID through the API Gateway. Replace '1' with the desired hotel ID."
+							},
+							"response": []
+						},
+						{
+							"name": "Find Hotel by Name",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_base_url}}/{{hotels_service_name}}/hotels/name/Hotel Imperial",
+									"host": [
+										"{{gateway_base_url}}"
+									],
+									"path": [
+										"{{hotels_service_name}}",
+										"hotels",
+										"name",
+										"Hotel Imperial"
+									]
+								},
+								"description": "Searches for hotels by name through the gateway. Try: 'Hotel Imperial', 'Ryokan Hanako', 'Tokyo Tower View'."
+							},
+							"response": []
+						},
+						{
+							"name": "Find Hotel by Address",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_base_url}}/{{hotels_service_name}}/hotels/address/Calle Real 123",
+									"host": [
+										"{{gateway_base_url}}"
+									],
+									"path": [
+										"{{hotels_service_name}}",
+										"hotels",
+										"address",
+										"Calle Real 123"
+									]
+								},
+								"description": "Locates hotels by address through the gateway. Try: 'Calle Real 123', 'Avenida Goya 45', 'Plaza Mayor 67'."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "📍 Search by Location",
+					"description": "Find hotels by geographical criteria via gateway",
+					"item": [
+						{
+							"name": "Find Hotels by City",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_base_url}}/{{hotels_service_name}}/hotels/city/Tokio",
+									"host": [
+										"{{gateway_base_url}}"
+									],
+									"path": [
+										"{{hotels_service_name}}",
+										"hotels",
+										"city",
+										"Tokio"
+									]
+								},
+								"description": "Retrieves hotels by city through the gateway. Available cities: Tokio, Osaka, Kioto, Sapporo, etc."
+							},
+							"response": []
+						},
+						{
+							"name": "Find Hotels by State",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_base_url}}/{{hotels_service_name}}/hotels/state/Kanto",
+									"host": [
+										"{{gateway_base_url}}"
+									],
+									"path": [
+										"{{hotels_service_name}}",
+										"hotels",
+										"state",
+										"Kanto"
+									]
+								},
+								"description": "Retrieves hotels by state through the gateway. Try: Kanto, Kansai, Hokkaido (Japan) or California, New York (USA)."
+							},
+							"response": []
+						},
+						{
+							"name": "Find Hotels by Country",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_base_url}}/{{hotels_service_name}}/hotels/country/Japón",
+									"host": [
+										"{{gateway_base_url}}"
+									],
+									"path": [
+										"{{hotels_service_name}}",
+										"hotels",
+										"country",
+										"Japón"
+									]
+								},
+								"description": "Retrieves hotels by country through the gateway. Available: 'Japón' and 'Estados Unidos'."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "⭐ Search by Quality",
+					"description": "Filter hotels by star ratings via gateway",
+					"item": [
+						{
+							"name": "Find Hotels by Star Rating",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_base_url}}/{{hotels_service_name}}/hotels/stars/5",
+									"host": [
+										"{{gateway_base_url}}"
+									],
+									"path": [
+										"{{hotels_service_name}}",
+										"hotels",
+										"stars",
+										"5"
+									]
+								},
+								"description": "Retrieves hotels by star rating through the gateway. Available ratings: 3, 4, and 5 stars."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "🔧 Advanced Search",
+					"description": "Multi-filter hotel search via gateway",
+					"item": [
+						{
+							"name": "Multi-Filter Hotel Search",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_base_url}}/{{hotels_service_name}}/hotels/filters?city=Tokio&state=Kanto&country=Japón&stars=5",
+									"host": [
+										"{{gateway_base_url}}"
+									],
+									"path": [
+										"{{hotels_service_name}}",
+										"hotels",
+										"filters"
+									],
+									"query": [
+										{
+											"key": "city",
+											"value": "Tokio",
+											"description": "Filter by city (optional) - Try: Tokio, Osaka, Kioto"
+										},
+										{
+											"key": "state",
+											"value": "Kanto",
+											"description": "Filter by state (optional) - Try: Kanto, Kansai, Hokkaido"
+										},
+										{
+											"key": "country",
+											"value": "Japón",
+											"description": "Filter by country (optional) - Try: Japón, Estados Unidos"
+										},
+										{
+											"key": "stars",
+											"value": "5",
+											"description": "Filter by star rating (3-5 stars available)"
+										}
+									]
+								},
+								"description": "Advanced hotel search through the gateway with multiple filters. All parameters are optional."
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "🔗 Cross-Service Integration (via Gateway)",
+			"description": "Tourism service hotel integration through API Gateway",
+			"item": [
+				{
+					"name": "🏨 Hotels via Tourism Service",
+					"description": "Access hotel data through Tourism service via gateway",
+					"item": [
+						{
+							"name": "Get Hotels by City (Tourism)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_base_url}}/{{tourism_service_name}}/tourism/Tokio/hotel",
+									"host": [
+										"{{gateway_base_url}}"
+									],
+									"path": [
+										"{{tourism_service_name}}",
+										"tourism",
+										"Tokio",
+										"hotel"
+									]
+								},
+								"description": "Retrieves hotels by city through Tourism service via gateway. Try: Tokio, Osaka, Kioto, Sapporo."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Hotels by State (Tourism)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_base_url}}/{{tourism_service_name}}/tourism/Kanto/hotel",
+									"host": [
+										"{{gateway_base_url}}"
+									],
+									"path": [
+										"{{tourism_service_name}}",
+										"tourism",
+										"Kanto",
+										"hotel"
+									]
+								},
+								"description": "Retrieves hotels by state through Tourism service via gateway. Try: Kanto, Kansai, Hokkaido."
+							},
+							"response": []
+						},
+						{
+							"name": "Get Hotels by Country (Tourism)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_base_url}}/{{tourism_service_name}}/tourism/Japón/hotel",
+									"host": [
+										"{{gateway_base_url}}"
+									],
+									"path": [
+										"{{tourism_service_name}}",
+										"tourism",
+										"Japón",
+										"hotel"
+									]
+								},
+								"description": "Retrieves hotels by country through Tourism service via gateway. Available: 'Japón' or 'Estados Unidos'."
+							},
+							"response": []
+						},
+						{
+							"name": "Advanced Hotel Search (Tourism)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{gateway_base_url}}/{{tourism_service_name}}/tourism/hotel/search?city=Tokio&state=Kanto&country=Japón&stars=5",
+									"host": [
+										"{{gateway_base_url}}"
+									],
+									"path": [
+										"{{tourism_service_name}}",
+										"tourism",
+										"hotel",
+										"search"
+									],
+									"query": [
+										{
+											"key": "city",
+											"value": "Tokio",
+											"description": "City filter (optional) - Available: Tokio, Osaka, Kioto, etc."
+										},
+										{
+											"key": "state",
+											"value": "Kanto",
+											"description": "State filter (optional) - Available: Kanto, Kansai, Hokkaido, etc."
+										},
+										{
+											"key": "country",
+											"value": "Japón",
+											"description": "Country filter (optional) - Available: Japón, Estados Unidos"
+										},
+										{
+											"key": "stars",
+											"value": "5",
+											"description": "Star rating filter (3-5 stars available)"
+										}
+									]
+								},
+								"description": "Advanced hotel search through Tourism service via gateway with multiple filters."
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "🔧 System Health (via Gateway)",
+			"description": "Monitor system health through API Gateway",
+			"item": [
+				{
+					"name": "Health Check - Hotels Service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_base_url}}/{{hotels_service_name}}/actuator/health",
+							"host": [
+								"{{gateway_base_url}}"
+							],
+							"path": [
+								"{{hotels_service_name}}",
+								"actuator",
+								"health"
+							]
+						},
+						"description": "Check Hotels service health through the API Gateway. Useful for monitoring service status."
+					},
+					"response": []
+				},
+				{
+					"name": "Actuator Root - Hotels Service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_base_url}}/{{hotels_service_name}}/actuator",
+							"host": [
+								"{{gateway_base_url}}"
+							],
+							"path": [
+								"{{hotels_service_name}}",
+								"actuator"
+							]
+						},
+						"description": "Access Hotels service actuator endpoints through the gateway to see available monitoring options."
+					},
+					"response": []
+				},
+				{
+					"name": "Gateway Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_base_url}}/actuator/health",
+							"host": [
+								"{{gateway_base_url}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						},
+						"description": "Check the API Gateway's own health status. This helps monitor the gateway service itself."
+					},
+					"response": []
+				},
+				{
+					"name": "Gateway Routes Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_base_url}}/actuator/gateway/routes",
+							"host": [
+								"{{gateway_base_url}}"
+							],
+							"path": [
+								"actuator",
+								"gateway",
+								"routes"
+							]
+						},
+						"description": "Shows all available routes configured in the API Gateway. Useful for debugging routing issues."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "gateway_base_url",
+			"value": "http://localhost:443",
+			"type": "string"
+		},
+		{
+			"key": "tourism_service_name",
+			"value": "cities-service",
+			"type": "string"
+		},
+		{
+			"key": "hotels_service_name",
+			"value": "hotels-service",
+			"type": "string"
+		}
+	]
+}

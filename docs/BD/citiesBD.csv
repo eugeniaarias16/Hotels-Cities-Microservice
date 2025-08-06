@@ -1,0 +1,101 @@
+id,name,state,country
+1,Tokio,Kanto,Japón
+2,Osaka,Kansai,Japón
+3,Kioto,Kansai,Japón
+4,Sapporo,Hokkaido,Japón
+5,Nagoya,Chubu,Japón
+6,Fukuoka,Kyushu,Japón
+7,Hiroshima,Chugoku,Japón
+8,Sendai,Tohoku,Japón
+9,Kobe,Kansai,Japón
+10,Yokohama,Kanto,Japón
+11,Nueva York,Nueva York,Estados Unidos
+12,Los Ángeles,California,Estados Unidos
+13,Chicago,Illinois,Estados Unidos
+14,Houston,Texas,Estados Unidos
+15,Phoenix,Arizona,Estados Unidos
+16,Filadelfia,Pensilvania,Estados Unidos
+17,San Antonio,Texas,Estados Unidos
+18,San Diego,California,Estados Unidos
+19,Dallas,Texas,Estados Unidos
+20,San José,California,Estados Unidos
+21,São Paulo,São Paulo,Brasil
+22,Río de Janeiro,Río de Janeiro,Brasil
+23,Brasilia,Distrito Federal,Brasil
+24,Salvador,Bahía,Brasil
+25,Fortaleza,Ceará,Brasil
+26,Belo Horizonte,Minas Gerais,Brasil
+27,Manaus,Amazonas,Brasil
+28,Curitiba,Paraná,Brasil
+29,Recife,Pernambuco,Brasil
+30,Goiânia,Goiás,Brasil
+31,Londres,Inglaterra,Reino Unido
+32,Birmingham,Inglaterra,Reino Unido
+33,Glasgow,Escocia,Reino Unido
+34,Liverpool,Inglaterra,Reino Unido
+35,Bristol,Inglaterra,Reino Unido
+36,Manchester,Inglaterra,Reino Unido
+37,Sheffield,Inglaterra,Reino Unido
+38,Leeds,Inglaterra,Reino Unido
+39,Edimburgo,Escocia,Reino Unido
+40,Leicester,Inglaterra,Reino Unido
+41,Ciudad de México,Ciudad de México,México
+42,Guadalajara,Jalisco,México
+43,Monterrey,Nuevo León,México
+44,Puebla,Puebla,México
+45,Tijuana,Baja California,México
+46,León,Guanajuato,México
+47,Juárez,Chihuahua,México
+48,Zapopan,Jalisco,México
+49,Mérida,Yucatán,México
+50,Querétaro,Querétaro,México
+51,París,Île-de-France,Francia
+52,Marsella,Provenza-Alpes-Costa Azul,Francia
+53,Lyon,Auvernia-Ródano-Alpes,Francia
+54,Toulouse,Occitania,Francia
+55,Niza,Provenza-Alpes-Costa Azul,Francia
+56,Nantes,Países del Loira,Francia
+57,Estrasburgo,Gran Este,Francia
+58,Montpellier,Occitania,Francia
+59,Burdeos,Nueva Aquitania,Francia
+60,Lille,Alta Francia,Francia
+61,Berlín,Berlín,Alemania
+62,Hamburgo,Hamburgo,Alemania
+63,Múnich,Baviera,Alemania
+64,Colonia,Renania del Norte-Westfalia,Alemania
+65,Fráncfort,Hesse,Alemania
+66,Stuttgart,Baden-Wurtemberg,Alemania
+67,Düsseldorf,Renania del Norte-Westfalia,Alemania
+68,Leipzig,Sajonia,Alemania
+69,Dortmund,Renania del Norte-Westfalia,Alemania
+70,Essen,Renania del Norte-Westfalia,Alemania
+71,Madrid,Comunidad de Madrid,España
+72,Barcelona,Cataluña,España
+73,Valencia,Comunidad Valenciana,España
+74,Sevilla,Andalucía,España
+75,Zaragoza,Aragón,España
+76,Málaga,Andalucía,España
+77,Murcia,Región de Murcia,España
+78,Palma,Islas Baleares,España
+79,Las Palmas,Canarias,España
+80,Bilbao,País Vasco,España
+81,Sídney,Nueva Gales del Sur,Australia
+82,Melbourne,Victoria,Australia
+83,Brisbane,Queensland,Australia
+84,Perth,Australia Occidental,Australia
+85,Adelaida,Australia del Sur,Australia
+86,Gold Coast,Queensland,Australia
+87,Canberra,Territorio de la Capital Australiana,Australia
+88,Newcastle,Nueva Gales del Sur,Australia
+89,Wollongong,Nueva Gales del Sur,Australia
+90,Geelong,Victoria,Australia
+91,El Cairo,El Cairo,Egipto
+92,Alejandría,Alejandría,Egipto
+93,Guiza,Guiza,Egipto
+94,Shubra El Kheima,Caliubia,Egipto
+95,Port Said,Port Said,Egipto
+96,Suez,Suez,Egipto
+97,Luxor,Luxor,Egipto
+98,Asuán,Asuán,Egipto
+99,Al-Minya,Al-Minya,Egipto
+100,Mansura,Dakahlia,Egipto

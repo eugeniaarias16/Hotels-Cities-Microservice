@@ -1,0 +1,26 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: cities-service
+
+  cloud:
+    config:
+      enabled: false  # Deshabilita completamente Spring Cloud Config
+      import-check:
+        enabled: false  # Deshabilita la verificación de importación
+  datasource:
+    url: jdbc:mysql://localhost:3306/cities?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: ${SQL_USERNAME}
+    password: ${SQL_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  h2:
+    console:
+      enabled: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

@@ -1,0 +1,7 @@
+package com.tourismSystem.cities.exceptions;
+
+public class ResourceNotFound extends RuntimeException {
+    public ResourceNotFound(String message) {
+        super(message);
+    }
+}
