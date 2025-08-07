@@ -26,4 +26,12 @@ public class GeneralExceptionHandle {
         error.put("message", ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler({InformationNotAvailable.class})
+    ResponseEntity<Map<String,String>>handleInfoNotAvailable(InformationNotAvailable ex){
+        Map<String,String>error=new HashMap<>();
+        error.put("error","Information Not Available Right Now. Please try later.");
+        error.put("message", ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.REQUEST_TIMEOUT);
+    }
 }

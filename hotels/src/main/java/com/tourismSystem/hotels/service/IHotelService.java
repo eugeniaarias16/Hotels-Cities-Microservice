@@ -15,4 +15,6 @@ public interface IHotelService {
     List<HotelDTO> findHotelsByStars(Integer stars);
     List<HotelDTO> findHotelByFilters(String city, String state, String country, Integer stars);
 
+    //This method is only for simulating a failure and activating Circuit Breaker y Resilience4
+    HotelDTO findHotelsByID(Long id);
 }

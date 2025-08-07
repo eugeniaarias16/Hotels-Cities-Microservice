@@ -362,12 +362,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{tourism_base_url}}/tourism/Tokio/hotel",
+									"raw": "{{tourism_base_url}}/tourism/city/Tokio/hotel",
 									"host": [
 										"{{tourism_base_url}}"
 									],
 									"path": [
 										"tourism",
+										"city",
 										"Tokio",
 										"hotel"
 									]
@@ -381,12 +382,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{tourism_base_url}}/tourism/Kanto/hotel",
+									"raw": "{{tourism_base_url}}/tourism/state/Kanto/hotel",
 									"host": [
 										"{{tourism_base_url}}"
 									],
 									"path": [
 										"tourism",
+										"state",
 										"Kanto",
 										"hotel"
 									]
@@ -400,12 +402,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{tourism_base_url}}/tourism/Japón/hotel",
+									"raw": "{{tourism_base_url}}/tourism/country/Japón/hotel",
 									"host": [
 										"{{tourism_base_url}}"
 									],
 									"path": [
 										"tourism",
+										"country",
 										"Japón",
 										"hotel"
 									]

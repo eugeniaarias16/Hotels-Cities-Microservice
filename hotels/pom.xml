@@ -11,7 +11,7 @@
 	<groupId>com.tourismSystem</groupId>
 	<artifactId>hotels</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<n>hotels</n>
+	<name>hotels</name>
 	<description>Microservices with Spring</description>
 	<url/>
 	<licenses>
@@ -75,6 +75,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>

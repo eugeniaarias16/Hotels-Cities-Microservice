@@ -429,13 +429,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{gateway_base_url}}/{{tourism_service_name}}/tourism/Tokio/hotel",
+									"raw": "{{gateway_base_url}}/{{tourism_service_name}}/tourism/city/Tokio/hotel",
 									"host": [
 										"{{gateway_base_url}}"
 									],
 									"path": [
 										"{{tourism_service_name}}",
 										"tourism",
+										"city",
 										"Tokio",
 										"hotel"
 									]
@@ -450,13 +451,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{gateway_base_url}}/{{tourism_service_name}}/tourism/Kanto/hotel",
+									"raw": "{{gateway_base_url}}/{{tourism_service_name}}/tourism/state/Kanto/hotel",
 									"host": [
 										"{{gateway_base_url}}"
 									],
 									"path": [
 										"{{tourism_service_name}}",
 										"tourism",
+										"state",
 										"Kanto",
 										"hotel"
 									]
@@ -471,13 +473,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{gateway_base_url}}/{{tourism_service_name}}/tourism/Japón/hotel",
+									"raw": "{{gateway_base_url}}/{{tourism_service_name}}/tourism/country/Japón/hotel",
 									"host": [
 										"{{gateway_base_url}}"
 									],
 									"path": [
 										"{{tourism_service_name}}",
 										"tourism",
+										"country",
 										"Japón",
 										"hotel"
 									]

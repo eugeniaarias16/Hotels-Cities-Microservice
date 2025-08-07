@@ -3,6 +3,7 @@ package com.tourismSystem.hotels.service;
 import com.tourismSystem.hotels.dto.HotelDTO;
 import com.tourismSystem.hotels.entities.Hotel;
 import com.tourismSystem.hotels.exceptions.BadRequest;
+import com.tourismSystem.hotels.exceptions.InformationNotAvailable;
 import com.tourismSystem.hotels.exceptions.ResourceNotFound;
 import com.tourismSystem.hotels.repositories.HotelRepository;
 import jakarta.ws.rs.BadRequestException;
@@ -20,6 +21,18 @@ public class HotelService implements IHotelService {
     public HotelService(HotelRepository hotelRepository) {
         this.hotelRepository = hotelRepository;
     }
+
+
+    //Method to try Circuit Breaker
+    @Override
+    public HotelDTO findHotelsByID(Long id) {
+        throw new InformationNotAvailable("Circuit Breaker's Testing");
+    /*    Hotel hotel= hotelRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFound("No Hotel Found."));
+        return new HotelDTO(hotel);*/
+    }
+
+
 
     @Override
     public HotelDTO findHotelById(Long id) {
@@ -127,6 +140,7 @@ public class HotelService implements IHotelService {
                 .map(HotelDTO::new)
                 .collect(Collectors.toList());
     }
+
 
     private boolean areAllParametersNull(String city, String state, String country, Integer stars) {
         return city == null && state == null && country == null && stars == null;

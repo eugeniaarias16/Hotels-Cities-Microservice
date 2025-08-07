@@ -33,6 +33,18 @@ public class HotelController {
     /* =================== SINGLE HOTEL ENDPOINTS =================== */
 
     @Operation(
+            summary = "Endpoint to try Circuit Breaker",
+            description = "This endpoint is for testing the correct operation of Circuit Breaker. We do this by manually triggering a fault.",
+            tags = {"Circuit Breaker"}
+    )
+    @GetMapping("/errorId/{id}")
+    //Endpoint to try CircuitBreaker
+    ResponseEntity<HotelDTO> findHotelsById(Long id){
+        HotelDTO hotelDTO=hotelService.findHotelsByID(id);
+        return ResponseEntity.ok(hotelDTO);
+    };
+
+    @Operation(
             summary = "Find hotel by ID",
             description = "Retrieves detailed information of a specific hotel using its unique identifier",
             tags = {"Hotel Details"}
