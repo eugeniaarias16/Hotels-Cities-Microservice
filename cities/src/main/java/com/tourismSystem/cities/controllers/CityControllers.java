@@ -2,7 +2,6 @@ package com.tourismSystem.cities.controllers;
 
 import com.tourismSystem.cities.dtos.CityDTO;
 import com.tourismSystem.cities.dtos.HotelsDTO;
-import com.tourismSystem.cities.exceptions.BadRequest;
 import com.tourismSystem.cities.repositories.IHotelRepository;
 import com.tourismSystem.cities.services.ICityService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -293,6 +292,17 @@ public class CityControllers {
     }
 
     /* =================== HOTEL INTEGRATION ENDPOINTS =================== */
+    @Operation(
+            summary = "Endpoint to try Circuit Breaker",
+            description = "This endpoint is for testing the correct operation of Circuit Breaker. We do this by manually triggering a fault.",
+            tags = {"Circuit Breaker"}
+    )
+    @GetMapping("/hotels/errorId/{id}")
+    ResponseEntity<HotelsDTO> findHotelsById(@PathVariable Long id){
+        HotelsDTO hotel= hotelRepository.findHotelsById(id);
+        return ResponseEntity.ok(hotel);
+    }
+
 
     @Operation(
             summary = "Find hotels by city",
@@ -317,7 +327,7 @@ public class CityControllers {
                     description = "No hotels found in the specified city"
             )
     })
-    @GetMapping("/{city}/hotel")
+    @GetMapping("/city/{city}/hotel")
     public ResponseEntity<List<HotelsDTO>> findHotelByCity(
             @Parameter(
                     description = "Name of the city to search hotels in",
@@ -347,7 +357,7 @@ public class CityControllers {
                     description = "No hotels found in the specified state"
             )
     })
-    @GetMapping("/{state}/hotel")
+    @GetMapping("/state/{state}/hotel")
     public ResponseEntity<List<HotelsDTO>> findHotelByState(
             @Parameter(
                     description = "Name of the state/province to search hotels in",
@@ -377,7 +387,7 @@ public class CityControllers {
                     description = "No hotels found in the specified country"
             )
     })
-    @GetMapping("/{country}/hotel")
+    @GetMapping("/country/{country}/hotel")
     public ResponseEntity<List<HotelsDTO>> findHotelByCountry(
             @Parameter(
                     description = "Name of the country to search hotels in",

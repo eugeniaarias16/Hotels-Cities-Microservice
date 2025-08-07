@@ -1,14 +1,13 @@
 server:
-  port: 8081
+  port: ${PORT:8081}
 spring:
   application:
     name: cities-service
-
   cloud:
     config:
-      enabled: false  # Deshabilita completamente Spring Cloud Config
+      enabled: false
       import-check:
-        enabled: false  # Deshabilita la verificación de importación
+        enabled: false
   datasource:
     url: jdbc:mysql://localhost:3306/cities?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: ${SQL_USERNAME}
@@ -21,6 +20,30 @@ spring:
     console:
       enabled: false
 eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://localhost:8761/eureka/
+resilience4j:
+  circuitbreaker:
+    instances:
+      hotels-service:
+        sliding-window-size: 5
+        minimum-number-of-calls: 3
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+      another-service:
+        sliding-window-size: 5
+        minimum-number-of-calls: 3
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+  retry:
+    instances:
+      simple-service:
+        max-attempts: 2
+        wait-duration: 1s
+logging:
+  level:
+    io.github.resilience4j: DEBUG
+    com.tourismSystem.cities: DEBUG

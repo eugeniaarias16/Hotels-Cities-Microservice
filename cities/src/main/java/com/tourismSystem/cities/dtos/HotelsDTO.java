@@ -13,7 +13,7 @@ public class HotelsDTO {
     private String name;
     private String address;
     private Integer stars;
-    private String city_name;
+    private String city;
     private String state;
     private String country;
 
