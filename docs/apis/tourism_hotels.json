@@ -1,0 +1,634 @@
+{
+	"info": {
+		"_postman_id": "tourism-hotels-management-v1",
+		"name": "Tourism & Hotels Management",
+		"description": "Comprehensive API collection for managing tourist cities and hotel operations. This collection integrates two microservices:\n\n🏙️ **Tourism Service** (Port 8081): Manages tourist cities with full CRUD operations\n🏨 **Hotels Service** (Port 8082): Handles hotel search, filtering, and detailed information retrieval\n\n**Database Overview:**\n- 🏙️ **100 Cities**: Primarily in Japan (Tokio, Osaka, Kioto, Sapporo) and United States\n- 🏨 **137 Hotels**: Quality ratings from 3-5 stars across major tourist destinations\n- 🌏 **Coverage**: Japan (Kanto, Kansai, Hokkaido regions) and USA states\n\n**Key Features:**\n- Complete city management (create, read, update, delete)\n- Advanced hotel search with multiple filters\n- Location-based searches (city, state, country)\n- Quality-based filtering (3-5 star ratings)\n- Cross-service integration for comprehensive tourism data\n- Circuit breaker pattern implementation for resilience\n\n**Perfect for:** Travel platforms, booking systems, tourism management applications with high availability requirements",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "🏙️ Cities Management",
+			"description": "Complete CRUD operations for managing tourist cities",
+			"item": [
+				{
+					"name": "📋 Get All Cities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{tourism_base_url}}/tourism/cities",
+							"host": [
+								"{{tourism_base_url}}"
+							],
+							"path": [
+								"tourism",
+								"cities"
+							]
+						},
+						"description": "Retrieves a complete list of all tourist cities available in the system. Perfect for populating dropdowns or getting an overview of available destinations."
+					}
+				},
+				{
+					"name": "🔍 Find City by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{tourism_base_url}}/tourism/city/id/1",
+							"host": [
+								"{{tourism_base_url}}"
+							],
+							"path": [
+								"tourism",
+								"city",
+								"id",
+								"1"
+							]
+						},
+						"description": "Finds a specific city using its unique identifier. Example: ID=1 returns Tokio. Replace '1' with any ID from 1-100."
+					}
+				},
+				{
+					"name": "🔍 Find City by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{tourism_base_url}}/tourism/city/name/Tokio",
+							"host": [
+								"{{tourism_base_url}}"
+							],
+							"path": [
+								"tourism",
+								"city",
+								"name",
+								"Tokio"
+							]
+						},
+						"description": "Searches for a city by its name. Case-insensitive search. Try: Tokio, Osaka, Kioto, Sapporo, New York, Los Angeles."
+					}
+				},
+				{
+					"name": "➕ Create New City",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Yokohama\",\n  \"state\": \"Kanto\",\n  \"country\": \"Japón\"\n}"
+						},
+						"url": {
+							"raw": "{{tourism_base_url}}/tourism/city/create",
+							"host": [
+								"{{tourism_base_url}}"
+							],
+							"path": [
+								"tourism",
+								"city",
+								"create"
+							]
+						},
+						"description": "Creates a new tourist city in the system. All fields (name, state, country) are required."
+					}
+				},
+				{
+					"name": "✏️ Update City",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Tokio\",\n  \"state\": \"Tokyo Metropolis\"\n}"
+						},
+						"url": {
+							"raw": "{{tourism_base_url}}/tourism/city/1",
+							"host": [
+								"{{tourism_base_url}}"
+							],
+							"path": [
+								"tourism",
+								"city",
+								"1"
+							]
+						},
+						"description": "Partially updates an existing city. Only the fields provided in the body will be modified. Replace '1' with the target city ID."
+					}
+				},
+				{
+					"name": "🗑️ Delete City",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{tourism_base_url}}/tourism/city/1",
+							"host": [
+								"{{tourism_base_url}}"
+							],
+							"path": [
+								"tourism",
+								"city",
+								"1"
+							]
+						},
+						"description": "Permanently removes a city from the system. Replace '1' with the city ID to delete. Note: Cities with associated hotels cannot be deleted."
+					}
+				}
+			]
+		},
+		{
+			"name": "🏨 Hotels Management",
+			"description": "Advanced hotel search and information retrieval",
+			"item": [
+				{
+					"name": "🔍 Search by Details",
+					"description": "Search hotels by specific identifiers and names",
+					"item": [
+						{
+							"name": "Find Hotel by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hotels_base_url}}/hotels/id/1",
+									"host": [
+										"{{hotels_base_url}}"
+									],
+									"path": [
+										"hotels",
+										"id",
+										"1"
+									]
+								},
+								"description": "Retrieves detailed information of a specific hotel using its unique identifier. Replace '1' with the desired hotel ID."
+							}
+						},
+						{
+							"name": "Find Hotel by Name",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hotels_base_url}}/hotels/name/Hotel Imperial",
+									"host": [
+										"{{hotels_base_url}}"
+									],
+									"path": [
+										"hotels",
+										"name",
+										"Hotel Imperial"
+									]
+								},
+								"description": "Searches for a hotel by name. Case-insensitive with partial matches. Try: 'Hotel Imperial', 'Ryokan Hanako', 'Tokyo Tower View'."
+							}
+						},
+						{
+							"name": "Find Hotel by Address",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hotels_base_url}}/hotels/address/Calle Real 123",
+									"host": [
+										"{{hotels_base_url}}"
+									],
+									"path": [
+										"hotels",
+										"address",
+										"Calle Real 123"
+									]
+								},
+								"description": "Locates a hotel by address. Try addresses like: 'Calle Real 123', 'Avenida Goya 45', 'Plaza Mayor 67'."
+							}
+						}
+					]
+				},
+				{
+					"name": "📍 Search by Location",
+					"description": "Find hotels by geographical criteria",
+					"item": [
+						{
+							"name": "Find Hotels by City",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hotels_base_url}}/hotels/city/Tokio",
+									"host": [
+										"{{hotels_base_url}}"
+									],
+									"path": [
+										"hotels",
+										"city",
+										"Tokio"
+									]
+								},
+								"description": "Retrieves all hotels in a specific city. Available cities: Tokio, Osaka, Kioto, Sapporo, New York, Los Angeles, etc."
+							}
+						},
+						{
+							"name": "Find Hotels by State",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hotels_base_url}}/hotels/state/Kanto",
+									"host": [
+										"{{hotels_base_url}}"
+									],
+									"path": [
+										"hotels",
+										"state",
+										"Kanto"
+									]
+								},
+								"description": "Retrieves all hotels in a specific state/province. Try: Kanto, Kansai, Hokkaido (Japan) or California, New York (USA)."
+							}
+						},
+						{
+							"name": "Find Hotels by Country",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hotels_base_url}}/hotels/country/Japón",
+									"host": [
+										"{{hotels_base_url}}"
+									],
+									"path": [
+										"hotels",
+										"country",
+										"Japón"
+									]
+								},
+								"description": "Retrieves all hotels in a specific country. Available countries: 'Japón' and 'Estados Unidos'."
+							}
+						}
+					]
+				},
+				{
+					"name": "⭐ Search by Quality",
+					"description": "Filter hotels by star ratings and quality standards",
+					"item": [
+						{
+							"name": "Find Hotels by Star Rating",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hotels_base_url}}/hotels/stars/5",
+									"host": [
+										"{{hotels_base_url}}"
+									],
+									"path": [
+										"hotels",
+										"stars",
+										"5"
+									]
+								},
+								"description": "Retrieves all hotels with a specific star rating. Available ratings: 3, 4, and 5 stars."
+							}
+						}
+					]
+				},
+				{
+					"name": "🔧 Advanced Search",
+					"description": "Powerful search with multiple combined filters",
+					"item": [
+						{
+							"name": "Multi-Filter Hotel Search",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hotels_base_url}}/hotels/filters?city=Tokio&state=Kanto&country=Japón&stars=5",
+									"host": [
+										"{{hotels_base_url}}"
+									],
+									"path": [
+										"hotels",
+										"filters"
+									],
+									"query": [
+										{
+											"key": "city",
+											"value": "Tokio",
+											"description": "Filter by city name (optional) - Try: Tokio, Osaka, Kioto"
+										},
+										{
+											"key": "state",
+											"value": "Kanto",
+											"description": "Filter by state/province (optional) - Try: Kanto, Kansai, Hokkaido"
+										},
+										{
+											"key": "country",
+											"value": "Japón",
+											"description": "Filter by country (optional) - Try: Japón, Estados Unidos"
+										},
+										{
+											"key": "stars",
+											"value": "5",
+											"description": "Filter by star rating 3-5 (optional)"
+										}
+									]
+								},
+								"description": "Advanced search combining multiple criteria. All parameters are optional and can be used independently or together for precise results."
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "🔗 Cross-Service Integration",
+			"description": "Tourism service integration with Hotels API for comprehensive search",
+			"item": [
+				{
+					"name": "🏨 Hotels via Tourism Service",
+					"description": "Access hotel data through the Tourism service integration",
+					"item": [
+						{
+							"name": "Get Hotels by City (Tourism)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{tourism_base_url}}/tourism/city/Tokio/hotel",
+									"host": [
+										"{{tourism_base_url}}"
+									],
+									"path": [
+										"tourism",
+										"city",
+										"Tokio",
+										"hotel"
+									]
+								},
+								"description": "Retrieves hotels in a specific city through Tourism service. Try cities: Tokio, Osaka, Kioto, Sapporo."
+							}
+						},
+						{
+							"name": "Get Hotels by State (Tourism)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{tourism_base_url}}/tourism/state/Kanto/hotel",
+									"host": [
+										"{{tourism_base_url}}"
+									],
+									"path": [
+										"tourism",
+										"state",
+										"Kanto",
+										"hotel"
+									]
+								},
+								"description": "Retrieves hotels in a specific state through Tourism service. Try: Kanto, Kansai, Hokkaido, California, New York."
+							}
+						},
+						{
+							"name": "Get Hotels by Country (Tourism)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{tourism_base_url}}/tourism/country/Japón/hotel",
+									"host": [
+										"{{tourism_base_url}}"
+									],
+									"path": [
+										"tourism",
+										"country",
+										"Japón",
+										"hotel"
+									]
+								},
+								"description": "Retrieves hotels in a specific country through Tourism service. Available: 'Japón' or 'Estados Unidos'."
+							}
+						},
+						{
+							"name": "Advanced Hotel Search (Tourism)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{tourism_base_url}}/tourism/hotel/search?city=Tokio&state=Kanto&country=Japón&stars=5",
+									"host": [
+										"{{tourism_base_url}}"
+									],
+									"path": [
+										"tourism",
+										"hotel",
+										"search"
+									],
+									"query": [
+										{
+											"key": "city",
+											"value": "Tokio",
+											"description": "City filter (optional) - Available: Tokio, Osaka, Kioto, etc."
+										},
+										{
+											"key": "state",
+											"value": "Kanto",
+											"description": "State filter (optional) - Available: Kanto, Kansai, Hokkaido, etc."
+										},
+										{
+											"key": "country",
+											"value": "Japón",
+											"description": "Country filter (optional) - Available: Japón, Estados Unidos"
+										},
+										{
+											"key": "stars",
+											"value": "5",
+											"description": "Star rating filter (3-5 stars available)"
+										}
+									]
+								},
+								"description": "Advanced hotel search through Tourism service with multiple filters. All parameters are optional."
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "🔧 Circuit Breaker Testing",
+			"description": "Test circuit breaker functionality and resilience patterns",
+			"item": [
+				{
+					"name": "⚠️ Tourism Circuit Breaker Test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{tourism_base_url}}/tourism/hotels/errorId/999",
+							"host": [
+								"{{tourism_base_url}}"
+							],
+							"path": [
+								"tourism",
+								"hotels",
+								"errorId",
+								"999"
+							]
+						},
+						"description": "🚨 **Circuit Breaker Test Endpoint** - Tourism Service\n\nThis endpoint is specifically designed to test the circuit breaker pattern implementation in the Tourism service when communicating with the Hotels service.\n\n**Purpose:**\n- Test resilience patterns between microservices\n- Verify circuit breaker behavior during service failures\n- Validate fallback mechanisms\n- Monitor recovery patterns\n\n**How Circuit Breaker Works:**\n1. **Closed State**: Normal operation, requests pass through\n2. **Open State**: Service is failing, requests fail fast with fallback\n3. **Half-Open State**: Testing if service has recovered\n\n**Testing Steps:**\n1. Call this endpoint 5-10 times rapidly\n2. Observe circuit breaker opening (faster error responses)\n3. Wait for half-open state (automatic recovery attempt)\n4. Monitor return to closed state when service recovers\n\n**Expected Responses:**\n- Initial calls: May return hotel data or 500 errors\n- Circuit open: Fast failures with fallback data\n- Circuit half-open: Single test request allowed\n- Circuit closed: Normal operation resumed\n\n**Metrics to Monitor:**\n- Response times (should decrease when circuit opens)\n- Error rates and patterns\n- Fallback response content\n- Circuit state transitions"
+					}
+				},
+				{
+					"name": "⚠️ Hotels Circuit Breaker Test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hotels_base_url}}/hotels/errorId/999",
+							"host": [
+								"{{hotels_base_url}}"
+							],
+							"path": [
+								"hotels",
+								"errorId",
+								"999"
+							]
+						},
+						"description": "🚨 **Circuit Breaker Test Endpoint** - Hotels Service\n\nThis endpoint tests the circuit breaker implementation directly in the Hotels service. Use this to verify internal resilience patterns.\n\n**Purpose:**\n- Test circuit breaker behavior within the Hotels service\n- Simulate database or external service failures\n- Verify fallback mechanisms\n- Monitor circuit state transitions\n\n**Circuit Breaker Pattern Benefits:**\n- **Fail Fast**: Avoid cascading failures\n- **Resource Protection**: Prevent overwhelming failing services\n- **Automatic Recovery**: Self-healing when service recovers\n- **Improved User Experience**: Consistent response times during failures\n\n**Testing Strategy:**\n1. **Trigger Failures**: Call endpoint repeatedly to exceed failure threshold\n2. **Monitor States**: Watch circuit transition from closed → open → half-open → closed\n3. **Measure Impact**: Compare response times between states\n4. **Verify Fallbacks**: Ensure fallback responses are meaningful\n\n**Configuration Parameters (typical):**\n- **Failure Threshold**: 50% failure rate\n- **Minimum Requests**: 10 requests before evaluation\n- **Wait Duration**: 30-60 seconds in open state\n- **Success Threshold**: 3 successful requests to close circuit\n\n**Real-World Scenarios:**\n- Database connection failures\n- External API timeouts\n- Service overload conditions\n- Network connectivity issues"
+					}
+				}
+			]
+		},
+		{
+			"name": "🔧 System Health",
+			"description": "Monitor system health and status",
+			"item": [
+				{
+					"name": "Health Check - Tourism Service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{tourism_base_url}}/actuator/health",
+							"host": [
+								"{{tourism_base_url}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						},
+						"description": "Check the health status of the Tourism service. Monitors database connectivity, circuit breaker states, and overall service health."
+					}
+				},
+				{
+					"name": "Health Check - Hotels Service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hotels_base_url}}/actuator/health",
+							"host": [
+								"{{hotels_base_url}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						},
+						"description": "Check the health status of the Hotels service. Useful for monitoring and troubleshooting."
+					}
+				},
+				{
+					"name": "Actuator Root - Tourism Service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{tourism_base_url}}/actuator",
+							"host": [
+								"{{tourism_base_url}}"
+							],
+							"path": [
+								"actuator"
+							]
+						},
+						"description": "Access the main actuator endpoint for Tourism service to see all available monitoring endpoints including circuit breakers."
+					}
+				},
+				{
+					"name": "Actuator Root - Hotels Service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hotels_base_url}}/actuator",
+							"host": [
+								"{{hotels_base_url}}"
+							],
+							"path": [
+								"actuator"
+							]
+						},
+						"description": "Access the main actuator endpoint to see all available monitoring endpoints."
+					}
+				},
+				{
+					"name": "Circuit Breaker Metrics - Tourism",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{tourism_base_url}}/actuator/circuitbreakers",
+							"host": [
+								"{{tourism_base_url}}"
+							],
+							"path": [
+								"actuator",
+								"circuitbreakers"
+							]
+						},
+						"description": "Monitor circuit breaker states and metrics in the Tourism service. Shows which circuit breakers are open, closed, or half-open, along with failure rates and recovery times."
+					}
+				},
+				{
+					"name": "Circuit Breaker Metrics - Hotels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hotels_base_url}}/actuator/circuitbreakers",
+							"host": [
+								"{{hotels_base_url}}"
+							],
+							"path": [
+								"actuator",
+								"circuitbreakers"
+							]
+						},
+						"description": "Monitor circuit breaker states and metrics in the Hotels service. Provides detailed information about circuit breaker health and performance."
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "tourism_base_url",
+			"value": "http://localhost:8081",
+			"description": "Base URL for the Tourism Service API"
+		},
+		{
+			"key": "hotels_base_url",
+			"value": "http://localhost:8082",
+			"description": "Base URL for the Hotels Service API"
+		}
+	]
+}

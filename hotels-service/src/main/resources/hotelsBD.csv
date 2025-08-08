@@ -1,0 +1,138 @@
+id,name,address,stars,city,state,country
+1,Hotel Imperial,Calle Real 123,4,Tokio,Kanto,Japón
+2,Ryokan Hanako,Avenida Goya 45,3,Tokio,Kanto,Japón
+3,Tokyo Tower View,Plaza Mayor 67,5,Tokio,Kanto,Japón
+4,Tokyo Bay Inn,Calle Luna 89,4,Tokio,Kanto,Japón
+5,Hotel Sakura,Avenida de la Paz 101,3,Tokio,Kanto,Japón
+6,Imperial Osaka,Calle Principal 234,4,Osaka,Kansai,Japón
+7,Dotonbori Hotel,Avenida del Sol 56,5,Osaka,Kansai,Japón
+8,Osaka Business Stay,Plaza Central 78,3,Osaka,Kansai,Japón
+9,Kyoto Grand,Calle del Templo 567,5,Kioto,Kansai,Japón
+10,Gion Inn,Avenida de la Felicidad 89,4,Kioto,Kansai,Japón
+11,Kyoto Garden,Plaza del Jardín 101,3,Kioto,Kansai,Japón
+12,Sapporo Resort,Calle de las Montañas 789,4,Sapporo,Hokkaido,Japón
+13,Hokkaido Inn,Avenida del Lago 123,3,Sapporo,Hokkaido,Japón
+14,Sapporo Comfort,Plaza Mayor 456,4,Sapporo,Hokkaido,Japón
+15,Nagoya Castle Hotel,Calle del Castillo 234,5,Nagoya,Chubu,Japón
+16,Nagoya Central,Avenida del Puerto 567,4,Nagoya,Chubu,Japón
+17,Fukuoka Tower Hotel,Plaza de la Torre 890,4,Fukuoka,Kyushu,Japón
+18,Hakata Grand,Calle de las Flores 12,5,Fukuoka,Kyushu,Japón
+19,Hiroshima Peace Inn,Avenida de la Paz 34,3,Hiroshima,Chugoku,Japón
+20,Sendai City Hotel,Calle de la Ciudad 56,4,Sendai,Tohoku,Japón
+21,Kobe Port Hotel,Avenida del Puerto 78,5,Kobe,Kansai,Japón
+22,Yokohama Bay,Plaza de la Bahía 90,4,Yokohama,Kanto,Japón
+23,Grand Central,Avenida del Río 12,5,Nueva York,Nueva York,Estados Unidos
+24,Manhattan Inn,Calle Broadway 34,4,Nueva York,Nueva York,Estados Unidos
+25,Brooklyn House,Avenida Principal 56,3,Nueva York,Nueva York,Estados Unidos
+26,NYC Luxury,Calle Central 78,5,Nueva York,Nueva York,Estados Unidos
+27,Times Square Hotel,Plaza de la Música 90,4,Nueva York,Nueva York,Estados Unidos
+28,Hollywood Inn,Avenida de las Estrellas 123,5,Los Ángeles,California,Estados Unidos
+29,LA Grand,Calle de los Sueños 456,4,Los Ángeles,California,Estados Unidos
+30,Beverly Hills Hotel,Plaza de las Lujurias 789,5,Los Ángeles,California,Estados Unidos
+31,Chicago Tower,Avenida del Viento 12,5,Chicago,Illinois,Estados Unidos
+32,Windy City Inn,Calle del Lago 34,4,Chicago,Illinois,Estados Unidos
+33,Houston Grand,Avenida del Petróleo 56,4,Houston,Texas,Estados Unidos
+34,Houston Downtown,Calle del Centro 78,3,Houston,Texas,Estados Unidos
+35,Phoenix Sunset,Avenida del Desierto 90,4,Phoenix,Arizona,Estados Unidos
+36,Philadelphia House,Calle de la Historia 123,4,Filadelfia,Pensilvania,Estados Unidos
+37,San Antonio Riverwalk,Avenida del Río 45,5,San Antonio,Texas,Estados Unidos
+38,San Diego Bay,Calle de la Playa 67,4,San Diego,California,Estados Unidos
+39,Dallas Tower Hotel,Avenida de los Valles 89,5,Dallas,Texas,Estados Unidos
+40,San Jose Silicon Inn,Plaza de la Tecnología 101,3,San José,California,Estados Unidos
+41,Paulista View,Avenida Paulista 123,5,São Paulo,São Paulo,Brasil
+42,Ibirapuera Inn,Calle del Parque 45,4,São Paulo,São Paulo,Brasil
+43,Copacabana Palace,Avenida Atlántica 678,5,Río de Janeiro,Río de Janeiro,Brasil
+44,Ipanema Inn,Calle del Mar 901,4,Río de Janeiro,Río de Janeiro,Brasil
+45,Hotel Brasilia,Avenida Central 12,4,Brasilia,Distrito Federal,Brasil
+46,Salvador Bahía,Calle del Sol 34,4,Salvador,Bahía,Brasil
+47,Fortaleza Beach Hotel,Avenida de la Playa 567,4,Fortaleza,Ceará,Brasil
+48,Belo Horizonte Plaza,Plaza del Mercado 89,3,Belo Horizonte,Minas Gerais,Brasil
+49,Manaus Amazonia,Calle del Río 101,4,Manaus,Amazonas,Brasil
+50,Curitiba Inn,Avenida de la Ciudad 234,3,Curitiba,Paraná,Brasil
+51,Recife Mar Hotel,Avenida del Mar 567,4,Recife,Pernambuco,Brasil
+52,Goiânia Business,Calle del Centro 890,3,Goiânia,Goiás,Brasil
+53,London Eye Hotel,Avenida del Ojo 12,5,Londres,Inglaterra,Reino Unido
+54,Trafalgar House,Plaza Central 34,4,Londres,Inglaterra,Reino Unido
+55,London Bridge Inn,Calle del Puente 56,3,Londres,Inglaterra,Reino Unido
+56,Birmingham Center,Avenida del Centro 78,4,Birmingham,Inglaterra,Reino Unido
+57,Glasgow Grand,Calle de la Iglesia 90,5,Glasgow,Escocia,Reino Unido
+58,Liverpool Docks,Avenida del Puerto 123,4,Liverpool,Inglaterra,Reino Unido
+59,Bristol Harbour,Calle del Puerto 45,4,Bristol,Inglaterra,Reino Unido
+60,Manchester United Hotel,Avenida del Estadio 67,5,Manchester,Inglaterra,Reino Unido
+61,Sheffield City,Calle de la Ciudad 89,3,Sheffield,Inglaterra,Reino Unido
+62,Leeds Central,Avenida Principal 101,4,Leeds,Inglaterra,Reino Unido
+63,Edinburgh Castle Hotel,Calle del Castillo 23,5,Edimburgo,Escocia,Reino Unido
+64,Leicester Inn,Avenida del Mercado 45,3,Leicester,Inglaterra,Reino Unido
+65,Hotel Reforma,Avenida Reforma 12,5,Ciudad de México,Ciudad de México,México
+66,Palacio de los Azulejos,Calle de la Plata 34,4,Ciudad de México,Ciudad de México,México
+67,Coyoacán Inn,Avenida del Sol 56,3,Ciudad de México,Ciudad de México,México
+68,Guadalajara Plaza,Calle del Centro 78,4,Guadalajara,Jalisco,México
+69,Guadalajara Grand,Avenida de la Paz 90,5,Guadalajara,Jalisco,México
+70,Monterrey Business,Avenida Industrial 12,4,Monterrey,Nuevo León,México
+71,Monterrey Towers,Calle del Río 34,5,Monterrey,Nuevo León,México
+72,Puebla Inn,Avenida de los Ángeles 56,3,Puebla,Puebla,México
+73,Tijuana Beach,Calle de la Playa 78,4,Tijuana,Baja California,México
+74,León Central,Avenida del Centro 90,3,León,Guanajuato,México
+75,Juarez Inn,Calle de la Frontera 123,3,Juárez,Chihuahua,México
+76,Zapopan Suites,Avenida de las Flores 45,4,Zapopan,Jalisco,México
+77,Mérida Grand,Calle de las Ruinas 67,5,Mérida,Yucatán,México
+78,Querétaro Plaza,Avenida del Acueducto 89,4,Querétaro,Querétaro,México
+79,Paris Tower View,Avenida de la Torre 12,5,París,Île-de-France,Francia
+80,Champs Elysees Hotel,Calle de los Campos 34,5,París,Île-de-France,Francia
+81,Montmartre Inn,Avenida de la Colina 56,4,París,Île-de-France,Francia
+82,Marsella Port Inn,Avenida del Puerto 78,4,Marsella,Provenza-Alpes-Costa Azul,Francia
+83,Lyon Center,Calle del Centro 90,5,Lyon,Auvernia-Ródano-Alpes,Francia
+84,Toulouse Space Hotel,Avenida del Espacio 12,4,Toulouse,Occitania,Francia
+85,Niza Beach Hotel,Calle de la Playa 34,5,Niza,Provenza-Alpes-Costa Azul,Francia
+86,Nantes Grand,Avenida del Río 56,4,Nantes,Países del Loira,Francia
+87,Estrasburgo Cathedral,Calle de la Catedral 78,4,Estrasburgo,Gran Este,Francia
+88,Montpellier Center,Avenida del Centro 90,3,Montpellier,Occitania,Francia
+89,Burdeos Inn,Calle de la Viña 12,4,Burdeos,Nueva Aquitania,Francia
+90,Lille Grand,Avenida Principal 34,4,Lille,Alta Francia,Francia
+91,Berlin Tower,Avenida de la Torre 12,5,Berlín,Berlín,Alemania
+92,Berlin Wall Inn,Calle del Muro 34,4,Berlín,Berlín,Alemania
+93,Hamburgo Port,Avenida del Puerto 56,4,Hamburgo,Hamburgo,Alemania
+94,Munich Grand,Calle del Centro 78,5,Múnich,Baviera,Alemania
+95,Colonia Cathedral,Avenida de la Catedral 90,4,Colonia,Renania del Norte-Westfalia,Alemania
+96,Frankfurt Business,Calle de las Finanzas 12,4,Fráncfort,Hesse,Alemania
+97,Stuttgart Suites,Avenida de los Coches 34,4,Stuttgart,Baden-Wurtemberg,Alemania
+98,Dusseldorf Inn,Calle del Río 56,3,Düsseldorf,Renania del Norte-Westfalia,Alemania
+99,Leipzig Grand,Avenida de la Música 78,4,Leipzig,Sajonia,Alemania
+100,Dortmund Sports Hotel,Calle del Estadio 90,4,Dortmund,Renania del Norte-Westfalia,Alemania
+101,Essen Center,Avenida del Centro 12,3,Essen,Renania del Norte-Westfalia,Alemania
+102,Madrid Palace,Plaza de la Villa 12,5,Madrid,Comunidad de Madrid,España
+103,Sol Inn,Calle del Sol 34,4,Madrid,Comunidad de Madrid,España
+104,Gran Vía Hotel,Avenida de la Luz 56,5,Madrid,Comunidad de Madrid,España
+105,Barcelona Grand,Calle de las Ramblas 78,5,Barcelona,Cataluña,España
+106,Gothic Quarter Inn,Plaza Gótica 90,4,Barcelona,Cataluña,España
+107,Valencia Beach,Avenida de la Playa 12,4,Valencia,Comunidad Valenciana,España
+108,Sevilla Suites,Avenida del Río 34,4,Sevilla,Andalucía,España
+109,Zaragoza Inn,Calle del Pilar 56,3,Zaragoza,Aragón,España
+110,Malaga Port,Avenida del Puerto 78,4,Málaga,Andalucía,España
+111,Murcia Gardens,Calle del Jardín 90,3,Murcia,Región de Murcia,España
+112,Palma Beach Hotel,Avenida del Mar 12,4,Palma,Islas Baleares,España
+113,Las Palmas Inn,Calle de la Playa 34,3,Las Palmas,Canarias,España
+114,Bilbao Museum Hotel,Avenida del Arte 56,5,Bilbao,País Vasco,España
+115,Sydney Opera House Hotel,Avenida de la Ópera 12,5,Sídney,Nueva Gales del Sur,Australia
+116,Bondi Beach Inn,Calle de la Playa 34,4,Sídney,Nueva Gales del Sur,Australia
+117,Melbourne Central,Avenida del Centro 56,4,Melbourne,Victoria,Australia
+118,Melbourne Grand,Calle Principal 78,5,Melbourne,Victoria,Australia
+119,Brisbane River Hotel,Avenida del Río 90,4,Brisbane,Queensland,Australia
+120,Perth Sunset,Calle del Sol 12,4,Perth,Australia Occidental,Australia
+121,Adelaide Suites,Avenida del Parque 34,3,Adelaida,Australia del Sur,Australia
+122,Gold Coast Beach,Calle de la Playa 56,5,Gold Coast,Queensland,Australia
+123,Canberra House,Avenida del Parlamento 78,4,Canberra,Territorio de la Capital Australiana,Australia
+124,Newcastle Harbour,Calle del Puerto 90,3,Newcastle,Nueva Gales del Sur,Australia
+125,Wollongong Inn,Avenida Principal 12,3,Wollongong,Nueva Gales del Sur,Australia
+126,Geelong Comfort,Calle del Centro 34,3,Geelong,Victoria,Australia
+127,Cairo Pyramids Hotel,Avenida de las Pirámides 12,5,El Cairo,El Cairo,Egipto
+128,Cairo Museum Inn,Calle del Museo 34,4,El Cairo,El Cairo,Egipto
+129,Alexandria Beach,Avenida del Mar 56,4,Alejandría,Alejandría,Egipto
+130,Giza Pyramids,Calle de las Pirámides 78,5,Guiza,Guiza,Egipto
+131,Shubra El Kheima Suites,Avenida del Centro 90,3,Shubra El Kheima,Caliubia,Egipto
+132,Port Said Inn,Avenida del Canal 12,4,Port Said,Port Said,Egipto
+133,Suez Canal Hotel,Calle del Canal 34,4,Suez,Suez,Egipto
+134,Luxor Temple,Avenida del Templo 56,5,Luxor,Luxor,Egipto
+135,Aswan Nile View,Avenida del Nilo 78,5,Asuán,Asuán,Egipto
+136,Al-Minya Hotel,Calle del Río 90,3,Al-Minya,Al-Minya,Egipto
+137,Mansura Suites,Avenida Principal 12,3,Mansura,Dakahlia,Egipto

@@ -1,0 +1,69 @@
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${SQL_PASSWORD}
+    ports:
+      - "3307:3306"
+    networks:
+      - 'hotels-cities-network'
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${SQL_PASSWORD}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+  eureka-server:
+    build: eureka-server
+    mem_limit: 512m
+    ports:
+      - "8761:8761"
+    networks:
+      - 'hotels-cities-network'
+
+  api-gateway:
+    build: api-gateWay
+    mem_limit: 512m
+    ports:
+      - "8080:443"
+    networks:
+      - 'hotels-cities-network'
+    depends_on:
+      - eureka-server
+
+  cities-service:
+    build: cities-service
+    mem_limit: 512m
+    ports:
+      - "8081:8081"
+    networks:
+      - 'hotels-cities-network'
+    depends_on:
+      - eureka-server
+      - mysql
+    environment:
+      SQL_USERNAME: ${SQL_USERNAME}
+      SQL_PASSWORD: ${SQL_PASSWORD}
+
+  hotels-service:
+    build: hotels-service
+    mem_limit: 512m
+    ports:
+      - "8082:8082"
+    networks:
+      - 'hotels-cities-network'
+    depends_on:
+      - eureka-server
+      - mysql
+    environment:
+      SQL_USERNAME: ${SQL_USERNAME}
+      SQL_PASSWORD: ${SQL_PASSWORD}
+
+networks:
+  hotels-cities-network:
+
+volumes:
+  mysql_data:

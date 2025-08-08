@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "tourism-hotels-gateway-v1",
 		"name": "Tourism & Hotels Management - Gateway",
-		"description": "🌐 **API Gateway Collection** for Tourism & Hotels Management System\n\n**Gateway Configuration:**\n- 🚪 **Gateway Port**: 443\n- 🔀 **Service Discovery**: Enabled with lower-case service IDs\n- 📍 **URL Pattern**: `http://localhost:443/{lowercase-service-name}/{endpoint-path}`\n- 🔄 **Auto-routing**: Gateway automatically converts service names to lowercase\n\n**Important**: Due to `lower-case-service-id: true`, URLs use lowercase service names:\n- `CITIES-SERVICE` becomes `cities-service`\n- `HOTELS-SERVICE` becomes `hotels-service`\n\n**Services Integration:**\n🏙️ **Cities Service** (`cities-service`): Complete CRUD operations for managing tourist cities\n🏨 **Hotels Service** (`hotels-service`): Advanced hotel search, filtering, and information retrieval\n\n**Service Registry:**\n- 🔍 **Eureka Server**: http://localhost:8761/eureka\n- 🏙️ **Cities Service**: Direct access on port 8081\n- 🏨 **Hotels Service**: Direct access on port 8082 (includes Swagger UI)\n- 🌐 **API Gateway**: Unified access through port 443\n\n**Database Overview:**\n- 🏙️ **100 Cities**: Primarily in Japan (Tokio, Osaka, Kioto, Sapporo) and United States\n- 🏨 **137 Hotels**: Quality ratings from 3-5 stars across major tourist destinations\n- 🌏 **Coverage**: Japan (Kanto, Kansai, Hokkaido regions) and USA states\n\n**Key Benefits of Gateway:**\n- Single entry point for all services\n- Automatic service discovery\n- Load balancing and routing\n- Centralized configuration\n\n⚠️ **Important Configuration Notes**:\n- Service names are automatically converted to lowercase by the gateway\n- Correct URLs: `/cities-service/...` and `/hotels-service/...`\n- Services registered in Eureka at http://localhost:8761/eureka\n- Hotels service includes Swagger UI at http://localhost:8082/swagger-ui.html\n- Both services use MySQL databases with environment variables for credentials",
+		"description": "🌐 **API Gateway Collection** for Tourism & Hotels Management System\n\n**Gateway Configuration:**\n- 🚪 **Gateway Port**: 443\n- 🔀 **Service Discovery**: Enabled with lower-case service IDs\n- 📍 **URL Pattern**: `http://localhost:443/{lowercase-service-name}/{endpoint-path}`\n- 🔄 **Auto-routing**: Gateway automatically converts service names to lowercase\n\n**Important**: Due to `lower-case-service-id: true`, URLs use lowercase service names:\n- `CITIES-SERVICE` becomes `cities-service`\n- `HOTELS-SERVICE` becomes `hotels-service`\n\n**Services Integration:**\n🏙️ **Cities Service** (`cities-service`): Complete CRUD operations for managing tourist cities\n🏨 **Hotels Service** (`hotels-service`): Advanced hotel search, filtering, and information retrieval\n\n**Service Registry:**\n- 🔍 **Eureka Server**: http://localhost:8761/eureka\n- 🏙️ **Cities Service**: Direct access on port 8081\n- 🏨 **Hotels Service**: Direct access on port 8082 (includes Swagger UI)\n- 🌐 **API Gateway**: Unified access through port 443\n\n**Database Overview:**\n- 🏙️ **100 Cities**: Primarily in Japan (Tokio, Osaka, Kioto, Sapporo) and United States\n- 🏨 **137 Hotels**: Quality ratings from 3-5 stars across major tourist destinations\n- 🌏 **Coverage**: Japan (Kanto, Kansai, Hokkaido regions) and USA states\n\n**Key Benefits of Gateway:**\n- Single entry point for all services\n- Automatic service discovery\n- Load balancing and routing\n- Centralized configuration\n- Circuit Breaker pattern implementation\n\n⚠️ **Important Configuration Notes**:\n- Service names are automatically converted to lowercase by the gateway\n- Correct URLs: `/cities-service/...` and `/hotels-service/...`\n- Services registered in Eureka at http://localhost:8761/eureka\n- Hotels service includes Swagger UI at http://localhost:8082/swagger-ui.html\n- Both services use MySQL databases with environment variables for credentials\n- Circuit Breaker endpoints available for resilience testing",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "tourism-gateway-collection"
 	},
@@ -537,9 +537,78 @@
 			]
 		},
 		{
+			"name": "🔧 Circuit Breaker Testing (via Gateway)",
+			"description": "Test circuit breaker functionality through API Gateway",
+			"item": [
+				{
+					"name": "⚠️ Tourism Circuit Breaker Test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_base_url}}/{{tourism_service_name}}/tourism/hotels/errorId/999",
+							"host": [
+								"{{gateway_base_url}}"
+							],
+							"path": [
+								"{{tourism_service_name}}",
+								"tourism",
+								"hotels",
+								"errorId",
+								"999"
+							]
+						},
+						"description": "🚨 **Circuit Breaker Test Endpoint** - Tourism Service\n\nThis endpoint is specifically designed to test the circuit breaker pattern implementation. When called multiple times, it will:\n\n1. **Trigger Failures**: Intentionally fails to simulate service degradation\n2. **Open Circuit**: After threshold failures, circuit breaker opens\n3. **Fallback Response**: Returns fallback data when circuit is open\n4. **Recovery Testing**: Allows testing of half-open and closed states\n\n**How to Test:**\n- Call this endpoint 5-10 times rapidly\n- Observe circuit breaker state changes\n- Monitor fallback responses\n- Test recovery after waiting period\n\n**Expected Behavior:**\n- Initial calls may fail with 500 errors\n- Circuit opens after failure threshold\n- Subsequent calls return faster with fallback\n- Circuit attempts to close after timeout"
+					},
+					"response": []
+				},
+				{
+					"name": "⚠️ Hotels Circuit Breaker Test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_base_url}}/{{hotels_service_name}}/hotels/errorId/999",
+							"host": [
+								"{{gateway_base_url}}"
+							],
+							"path": [
+								"{{hotels_service_name}}",
+								"hotels",
+								"errorId",
+								"999"
+							]
+						},
+						"description": "🚨 **Circuit Breaker Test Endpoint** - Hotels Service\n\nThis endpoint tests the circuit breaker implementation in the Hotels service. Use this to verify resilience patterns work correctly.\n\n**Circuit Breaker States:**\n- **Closed**: Normal operation, requests pass through\n- **Open**: Service is failing, requests fail fast\n- **Half-Open**: Testing if service has recovered\n\n**Testing Strategy:**\n1. Call endpoint repeatedly (5-10 times)\n2. Watch for circuit to open (faster failures)\n3. Wait for half-open state (automatic recovery attempt)\n4. Verify circuit closes when service recovers\n\n**Metrics to Monitor:**\n- Response times (should be faster when circuit is open)\n- Error rates and types\n- Fallback behavior\n- Recovery time patterns"
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "🔧 System Health (via Gateway)",
 			"description": "Monitor system health through API Gateway",
 			"item": [
+				{
+					"name": "Health Check - Tourism Service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_base_url}}/{{tourism_service_name}}/actuator/health",
+							"host": [
+								"{{gateway_base_url}}"
+							],
+							"path": [
+								"{{tourism_service_name}}",
+								"actuator",
+								"health"
+							]
+						},
+						"description": "Check Tourism service health through the API Gateway. Useful for monitoring service status and database connectivity."
+					},
+					"response": []
+				},
 				{
 					"name": "Health Check - Hotels Service",
 					"request": {
@@ -615,6 +684,25 @@
 							]
 						},
 						"description": "Shows all available routes configured in the API Gateway. Useful for debugging routing issues."
+					},
+					"response": []
+				},
+				{
+					"name": "Gateway Circuit Breakers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_base_url}}/actuator/circuitbreakers",
+							"host": [
+								"{{gateway_base_url}}"
+							],
+							"path": [
+								"actuator",
+								"circuitbreakers"
+							]
+						},
+						"description": "Monitor circuit breaker states and metrics through the gateway. Shows which circuit breakers are open, closed, or half-open."
 					},
 					"response": []
 				}
